@@ -1,10 +1,12 @@
 #!/bin/bash
 # OS: Windowns 10
-# Desc: Função para ocultar pastas do sistema nomeadas conforme o array folders
+# Desc: Função para ocultar pastas do sistema nomeadas conforme o array folders_hide
 # Autor: Douglas Medeiros <medeirosinacio@outlook.com>
 
-# pastas a serem ocultadas
+# Pasta de trabalho
 declare -a folder=("/d/Code")
+
+# pastas a serem ocultadas
 declare -a folders_hide=('.vagrant' '.git' '.idea')
 
 # Faz a checagem se a pasta Code existe
