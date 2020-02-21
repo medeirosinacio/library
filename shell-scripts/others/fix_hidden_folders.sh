@@ -24,7 +24,7 @@ if [ -d "$folder" ]; then
         # Caso o diretorio atual seja de mesmo nome do diretorio para ocultar
         if [[ "$dir" == *"$i" ]]; then
 
-          # Ocultamos a pasta
+          # Ocultamos a pasta e ocultamos a saida do terminal
           attrib +h "$dir" >>/dev/null
 
         fi
