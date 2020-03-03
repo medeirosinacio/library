@@ -1,45 +1,50 @@
 #!/bin/bash
 # OS: Windowns 10
-# Desc: Synchronize git repositories bash script
+# Desc: Rename all files to randon string. PS: preserve extension
 # Autor: Douglas Medeiros <medeirosinacio@outlook.com>
-# Exemple to use: ./sync_repository.sh https://oauth2:XXXxxxXXXxxXXX@gitlab.com:name/repo.git git@gitlab.com:name/repo.git
+# Exemple to use: ./randon_name_files_folder.sh "/c/Users/Douglas Medeiros/Music/Spotify Donw"
 
-DATE=$(date +"%d-%m-%Y-%H-%M-%S-%s")
-FOLDER_TEMP="sync_repository-${DATE}"
+FOLDER=${1}
 
+# How to use:
+#  generateRandomString RESULT
+#  echo $RESULT
+function generateRandomString() {
 
-#<?php
-#
-#function trueScandir($directory)
-#{
-#	$result = [];
-#	$cdir = scandir($directory);
-#	foreach ($cdir as $key => $value) {
-#		if (!in_array($value, array(".", ".."))) {
-#			if (is_dir($directory . DIRECTORY_SEPARATOR . $value)) {
-#				$result[$value] = trueScandir($directory . DIRECTORY_SEPARATOR . $value);
-#			} else {
-#				$result[] = str_replace('.php', '', $value);
-#			}
-#		}
-#	}
-#
-#	return $result;
-#}
-#
-#function generateRandomString($length = 30, $sufix = '') {
-#    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-#    $charactersLength = strlen($characters);
-#    $randomString = '';
-#    for ($i = 0; $i < $length; $i++) {
-#        $randomString .= $characters[rand(0, $charactersLength - 1)];
-#    }
-#    return $randomString . $sufix;
-#}
-#echo 'start<br>';
-#foreach(trueScandir(__DIR__ . "/music" as $file)){
-#	echo $file . ' | OLD NAME<br>';
-#	echo generateRandomString() . ' | OLD NAME<br><br><br>';
-#	//rename(__DIR__ . "/music/{$file}", generateRandomString());
-#}
-#echo 'end<br>';
+  local -n VAR=$1
+  characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  string_length=25
+
+  string=''
+
+  x=1
+  while [ $x -le $string_length ]; do
+
+    possition=$((1 + RANDOM % 61))
+    string="${string}${characters:${possition}:1}"
+    x=$(($x + 1))
+
+  done
+
+  VAR=$string
+
+}
+
+# Faz a checagem se a pasta Code existe
+if [ -d "${FOLDER}" ]; then
+
+  cd "${FOLDER}" || exit
+
+  for f in *.*; do
+
+    filename=$(basename -- "$f")
+    extension="${filename##*.}"
+    filename="${filename%.*}"
+
+    generateRandomString RESULT
+    echo "Rename $f to $RESULT.$extension..."
+    mv "$f" "$RESULT.$extension"
+
+  done
+
+fi
