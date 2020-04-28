@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # check if all containers running docker-compose file
+# $1 | one argument to set docker-compose file or empty to docker-compose file default
 # example: ./check_containers_running_docker_compose.sh docker-compose-dev.yml
 
 # check if set docker-compose filename
