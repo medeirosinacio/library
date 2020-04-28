@@ -1,0 +1,15 @@
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - docker-compose config -q
+
+deploy_staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging server"
+    - docker-compose up -d --force-recreate --build --remove-orphans

@@ -1,0 +1,77 @@
+version: '3.4'
+
+services:
+
+  ## WEB SERVER
+  webserver:
+    image: nginx:alpine
+    container_name: ${PROJECT_NAME}-webserver
+    restart: always
+    networks:
+      - proxy
+      - backend
+    links:
+      - php-fpm
+    depends_on:
+      - postgres
+      - php-fpm
+    environment:
+      - TZ=${PROJECT_TIMEZONE}
+    working_dir: /var/www/html/
+    volumes:
+      - ../:/app
+      - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl.conf:/etc/nginx/ssl.conf
+      - ./nginx/security.conf:/etc/nginx/security.conf
+      - ./ssl/:/etc/ssl
+
+  ## PHP SERVER
+  php-fpm:
+    image: devilbox/php-fpm:7.4-prod
+    networks:
+      - backend
+    depends_on:
+      - postgres
+    links:
+      - memcached
+      - postgres
+    environment:
+      - TZ=${PROJECT_TIMEZONE}
+      - NEW_UID=${HOST_UID}
+      - NEW_GID=${HOST_GID}
+    container_name: ${PROJECT_NAME}-php-fpm
+    working_dir: /app
+    volumes:
+      - ../:/app
+      - ./php-fpm/php.dev.ini:/etc/php/7.3/fpm/conf.d/zzzzzzz-overrides.ini
+      - ./php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.d/zzzzzzz-overrides.conf
+
+  ## DB SERVER
+  postgres:
+    image: postgres:10
+    container_name: ${PROJECT_NAME}-postgres
+    restart: always
+    networks:
+      - proxy
+      - backend
+    ports:
+      - 5433:5432
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - TZ=${PROJECT_TIMEZONE}
+      - PGTZ=${PROJECT_TIMEZONE}
+      - POSTGRES_USER=${PROJECT_DEFAULT_USER}
+      - POSTGRES_PASSWORD=${PROJECT_DEFAULT_PASS}
+      - POSTGRES_MULTIPLE_DATABASES=${POSTGRES_MULTIPLE_DATABASES}
+
+## VOLUME DB DATA
+volumes:
+  db-data:
+
+## NETWORKS
+networks:
+  backend:
+  proxy:
+    external: true

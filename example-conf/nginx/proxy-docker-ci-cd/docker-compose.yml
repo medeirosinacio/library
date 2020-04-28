@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+
+  proxy:
+    image: nginx:alpine
+    container_name: proxy
+    volumes:
+      - ./nginx/proxy.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/sites-enable:/etc/nginx/sites-enable
+      - ./nginx/ssl-localhost:/etc/nginx/ssl-localhost
+      - ./nginx/ssl.conf:/etc/nginx/ssl-localhost/ssl.conf
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy
+    external: false

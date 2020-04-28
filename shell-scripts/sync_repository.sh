@@ -18,18 +18,25 @@ mkdir -p $FOLDER_TEMP
 cd $FOLDER_TEMP
 
 echo "Clone repository origin..."
-git clone $ORIGIN .
-for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
-  git branch --track "${branch##*/}" "$branch"
-done
-git fetch --all
-git pull --all
+if git clone $ORIGIN . ; then
 
-echo "Sync repository destination..."
-git remote set-url origin $DESTINATION
-git push origin --all
-git push origin --tags
-git push --force --all
-git push --force --tags
-cd ../
-rm -rf $FOLDER_TEMP
+	git clone $ORIGIN .
+	for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
+	  git branch --track "${branch##*/}" "$branch"
+	done
+	git fetch --all
+	git pull --all
+
+	echo "Sync repository destination..."
+	git remote set-url origin $DESTINATION
+	git push origin --all
+	git push origin --tags
+	git push --force --all
+	git push --force --tags
+	cd ../
+	rm -rf $FOLDER_TEMP
+	
+else
+	rm -rf $FOLDER_TEMP
+    echo "Servidor offline"
+fi
