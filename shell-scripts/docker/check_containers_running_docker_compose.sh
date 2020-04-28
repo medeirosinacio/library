@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# check if all containers running docker-compose file
+# example: ./check_containers_running_docker_compose.sh docker-compose-dev.yml
 
 # check if set docker-compose filename
 if [[ "$#" -eq  "0" ]]
@@ -30,7 +32,7 @@ for i in $(seq 1 ${timeout}); do
 
     if [[ ${len} -eq ${containerUps} ]]
     then
-        echo "all are started containers"
+        echo "all started containers"
         exit 0
     else
         echo "waiting for initialization of all containers"
