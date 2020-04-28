@@ -30,11 +30,14 @@ for i in $(seq 1 ${timeout}); do
 
     if [[ ${len} -eq ${containerUps} ]]
     then
+        echo "all are started containers"
         exit 0
     else
+        echo "waiting for initialization of all containers"
         sleep 1s
     fi
 
 done
 
+echo "error in the initialization of the containers"
 exit 1
