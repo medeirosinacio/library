@@ -27,17 +27,17 @@ done
 fdisk /dev/sda <<EEOF
 n
 p
-3
+4
 
 
 t
-3
+4
 8e
 w
 EEOF
 
-pvcreate /dev/sda3
-vgextend cl /dev/sda3
+pvcreate /dev/sda4
+vgextend cl /dev/sda4
 
 declare space_to_add_raw=$(vgdisplay | awk 'FNR == 19 {print}')
 declare -a array_space_to_add_raw
