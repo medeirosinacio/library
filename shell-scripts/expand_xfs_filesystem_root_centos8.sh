@@ -14,6 +14,18 @@ for word in $scsi_devices; do
    array_scsi_devices+=($word)
 done
 
+# get sda partition number
+declare partitions=$(cat /proc/partitions | awk '{print $4}')
+declare -a array_partitions
+for word in $partitions; do
+   if [[ $word =~ "sda" ]]
+    then
+       array_partitions+=($word)
+    fi
+done
+
+declare sda_number=$(("${#array_partitions[@]}" + 1))
+
 # re-scan
 for scsi_device in ${array_scsi_devices[@]}; do
 
@@ -27,17 +39,17 @@ done
 fdisk /dev/sda <<EEOF
 n
 p
-4
+${sda_number}
 
 
 t
-4
+${sda_number}
 8e
 w
 EEOF
 
-pvcreate /dev/sda4
-vgextend cl /dev/sda4
+pvcreate /dev/sda${sda_number}
+vgextend cl /dev/sda${sda_number}
 
 declare space_to_add_raw=$(vgdisplay | awk 'FNR == 19 {print}')
 declare -a array_space_to_add_raw
