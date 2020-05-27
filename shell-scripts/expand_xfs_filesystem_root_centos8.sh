@@ -24,7 +24,7 @@ for word in $partitions; do
     fi
 done
 
-declare sda_number=$(("${#array_partitions[@]}" + 1))
+declare sda_number=$(("${#array_partitions[@]}"))
 
 # re-scan
 for scsi_device in ${array_scsi_devices[@]}; do
