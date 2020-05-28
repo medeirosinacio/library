@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-#
-#
+# https://docs.gitlab.com/runner/install/linux-manually.html
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
