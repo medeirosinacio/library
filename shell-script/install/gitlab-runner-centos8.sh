@@ -13,12 +13,20 @@ if ! id -u "deployer" > /dev/null 2>&1; then
     exit 1
 fi
 
+# get gitlab-runner bin
 curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
 
+# change permission
 chmod +x /usr/local/bin/gitlab-runner
 
-gitlab-runner install --user=deployer --working-directory=/home/deployer
-
+# create $PATH 
 ln -s /usr/local/bin/gitlab-runner /bin/gitlab-runner
 
+# Install gitlab-runner deployer
+gitlab-runner install --user=deployer --working-directory=/home/deployer
+
+# Start service
 gitlab-runner start
+
+# Enable on boot
+systemctl enable gitlab-runner
