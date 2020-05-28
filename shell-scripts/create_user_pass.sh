@@ -7,7 +7,7 @@ fi
 
 if [ -z "$2" ]
   then
-    echo "No argument for create pass. create_user_pass.sh"
+    echo "No argument for create pass. create_user_pass.sh newuser JdsalkjKLAHSdaKAJ"
 fi
 
 useradd --comment "$1" --create-home $1 -p $2 --shell /bin/bash
