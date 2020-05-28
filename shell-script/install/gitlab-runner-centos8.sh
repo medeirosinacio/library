@@ -13,10 +13,12 @@ if ! id -u "deployer" > /dev/null 2>&1; then
     exit 1
 fi
 
-curl -L --output /bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
 
-chmod +x /bin/gitlab-runner
+chmod +x /usr/local/bin/gitlab-runner
 
 gitlab-runner install --user=deployer --working-directory=/home/deployer
+
+ln -s /usr/local/bin/gitlab-runner /bin/gitlab-runner
 
 gitlab-runner start
