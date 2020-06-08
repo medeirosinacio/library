@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # https://docs.gitlab.com/runner/install/linux-manually.html
+# how to execute this:
+# 1 - curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/install/gitlab-runner-centos8.sh -o gitlab-runner-centos8.sh
+# 2 - chmod +x ./gitlab-runner-centos8.sh
+# 3- ./gitlab-runner-centos8.sh
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
