@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 # chmod 755 ./docker_wsl2_ubuntu.sh
 # https://medium.com/@lewwybogus/how-to-stop-wsl2-from-hogging-all-your-ram-with-docker-d7846b9c5b37
