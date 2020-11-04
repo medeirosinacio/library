@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # chmod 755 ./wsl2_startup.sh
 
-# Ckeck root
+##################################
+####        CHECK ROOT        ####
+##################################
 if [ "$EUID" -ne 0 ]; then
   printf "ERRO: Please run as root \n"
   exit 1
 fi
 
-# Determine OS platform
+##################################
+####        GET OS            ####
+##################################
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
 if [ "$UNAME" == "linux" ]; then
@@ -22,23 +26,18 @@ fi
 # For everything else (or if above failed), just use generic identifier
 [ "$DISTRO" == "" ] && export DISTRO=$UNAME
 unset UNAME
-# Check OS
-if [ "$DISTRO" != "Ubuntu" ]; then
-  printf "ERRO: OS not supported. Installation only for Ubuntu. \n"
-  exit 1
+
+##################################
+####        CHECK OS          ####
+##################################
+
+### UBUNTU
+if [ "$DISTRO" == "Ubuntu" ]; then
+  curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/install/wsl/ubuntu.sh >/tmp/ubuntu.sh
+  chmod 755 /tmp/ubuntu.sh
+  /tmp/ubuntu.sh
+  exit
 fi
 
-apt update -y
-apt upgrade -y
-apt install net-tools
-
-# Install docker and docker-compose
-curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/install/docker_wsl2_ubuntu.sh >/tmp/docker_wsl2_ubuntu.sh
-chmod 755 /tmp/docker_wsl2_ubuntu.sh
-/tmp/docker_wsl2_ubuntu.sh
-
-# Configure Home Bash
-for d in /home/*; do
-  echo "cd /mnt/d/Code" >>/home/"${d:6}"/.bashrc
-done
-echo "cd /mnt/d/Code" >>~/.bashrc
+printf "ERRO: OS not supported. \n"
+exit 1

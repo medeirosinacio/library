@@ -43,29 +43,16 @@ service docker start
 systemctl enable docker
 
 # Docker compose Install
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+apt install docker-compose
 
 # add grounp and service startup
 for d in /home/*; do
-
   usermod -aG docker "${d:6}"
-
-  # Wsl user servicce startup
-  echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>/home/"${d:6}"/.bashrc
-  echo 'sudo service docker start' >>/home/"${d:6}"/.bashrc
-  echo 'fi' >>/home/"${d:6}"/.bashrc
-
 done
-
-# Wsl root servicce startup
-echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.bashrc
-echo 'service docker start' >>~/.bashrc
-echo 'fi' >>~/.bashrc
 
 # check install
 printf "\n \n \n"
 docker -v
-docker-compose --version
+#docker-compose --version
 printf "Please update the terminal for group changes to take effect \"newgrp docker\" \n"
 exit
