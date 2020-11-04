@@ -33,7 +33,7 @@ unset UNAME
 
 ### UBUNTU
 if [ "$DISTRO" == "Ubuntu" ]; then
-  curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/install/wsl/ubuntu.sh >/tmp/ubuntu.sh
+  curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
   chmod 755 /tmp/ubuntu.sh
   /tmp/ubuntu.sh
   exit
