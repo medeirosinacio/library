@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# chmod 755 ./wsl2_startup.sh
+# sudo curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl2_startup.sh > /tmp/wsl2_startup.sh
+# sudo chmod 755 /tmp/wsl2_startup.sh
+# sudo /tmp/wsl2_startup.sh
 
 ##################################
 ####        CHECK ROOT        ####
@@ -33,7 +35,8 @@ unset UNAME
 
 ### UBUNTU
 if [ "$DISTRO" == "Ubuntu" ]; then
-  curl https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
+  rm -rf /tmp/ubuntu.sh
+  curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
   chmod 755 /tmp/ubuntu.sh
   /tmp/ubuntu.sh
   exit

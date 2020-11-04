@@ -43,7 +43,7 @@ service docker start
 systemctl enable docker
 
 # Docker compose Install
-apt install docker-compose
+apt install docker-compose -y
 
 # add grounp and service startup
 for d in /home/*; do
