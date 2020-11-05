@@ -2,12 +2,6 @@
 # chmod 755 ./docker_wsl2_ubuntu.sh
 # https://medium.com/@lewwybogus/how-to-stop-wsl2-from-hogging-all-your-ram-with-docker-d7846b9c5b37
 
-# Ckeck root
-if [ "$EUID" -ne 0 ]; then
-  printf "ERRO: Please run as root \n"
-  exit 1
-fi
-
 # Determine OS platform
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 # If Linux, try to determine specific distribution
@@ -30,25 +24,23 @@ if [ "$DISTRO" != "Ubuntu" ]; then
 fi
 
 # Docker Install
-apt update -y
-apt install apt-transport-https ca-certificates curl software-properties-common -y
-apt install build-essential -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt update -y
-apt install docker-ce -y
-service docker start
+sudo apt update -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+sudo apt install build-essential -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update -y
+sudo apt install docker-ce -y
+sudo service docker start
 
 # "systemctl enable" not working in wls, use command line in ".bashrc". hacks
-systemctl enable docker
+sudo systemctl enable docker
 
 # Docker compose Install
-apt install docker-compose -y
+sudo apt install docker-compose -y
 
 # add grounp and service startup
-for d in /home/*; do
-  usermod -aG docker "${d:6}"
-done
+sudo usermod -aG docker $USER
 
 # check install
 printf "\n \n \n"

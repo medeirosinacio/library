@@ -35,9 +35,9 @@ unset UNAME
 
 ### UBUNTU
 if [ "$DISTRO" == "Ubuntu" ]; then
-  rm -rf /tmp/ubuntu.sh
+  sudo rm -rf /tmp/ubuntu.sh
   curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
-  chmod 755 /tmp/ubuntu.sh
+  sudo chmod 755 /tmp/ubuntu.sh
   /tmp/ubuntu.sh
   exit
 fi
