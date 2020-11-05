@@ -41,7 +41,6 @@ sudo apt install docker-compose -y
 
 # add grounp and service startup
 sudo usermod -aG docker $USER
-newgrp docker
 
 # check install
 printf "\n \n \n"
