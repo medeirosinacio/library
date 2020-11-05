@@ -29,7 +29,7 @@ if [ "$DISTRO" == "Ubuntu" ]; then
   curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
   sudo chmod 755 /tmp/ubuntu.sh
   /tmp/ubuntu.sh
-  newgrp docker
+  zsh
   exit
 fi
 

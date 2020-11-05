@@ -21,7 +21,7 @@ chmod 755 /tmp/docker_wsl2_ubuntu.sh
 ##################################
 ####   Configure Home Bash    ####
 ##################################
-echo "cd /mnt/d/Code" >>~/.bashrc
+#echo "cd /mnt/d/Code" >>~/.bashrc
 
 ##################################
 ####    FIX DOCKER STARTUP    ####
@@ -40,7 +40,7 @@ echo 'fi' >>~/.bashrc
 ##################################
 # https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/
 sudo apt-get install git wget zsh fzf -y
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 chsh -s $(grep /zsh$ /etc/shells | tail -1)
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -62,8 +62,17 @@ RPROMPT=\"%D{%f/%m/%y} %T\"
 
 """ >~/.zshrc
 
-echo "cd /mnt/d/Code" >>~/.zshrc
 echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.zshrc
 echo 'service docker start' >>~/.zshrc
 echo 'fi' >>~/.zshrc
-zsh
+
+##################################
+####           ALIAS          ####
+##################################
+mkdir ${COMPOSER_HOME:-$HOME/.composer}
+echo "
+alias composer=\"docker run --rm --interactive \
+    --volume \$PWD/:/app \
+    --volume \${COMPOSER_HOME:-\$HOME/.composer}:/tmp \
+    --user \$(id -u):\$(id -g) \
+    composer\"" >>~/.zshrc
