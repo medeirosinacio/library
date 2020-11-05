@@ -4,14 +4,6 @@
 # sudo /tmp/wsl2_startup.sh
 
 ##################################
-####        CHECK ROOT        ####
-##################################
-if [ "$EUID" -ne 0 ]; then
-  printf "ERRO: Please run as root \n"
-  exit 1
-fi
-
-##################################
 ####        GET OS            ####
 ##################################
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")

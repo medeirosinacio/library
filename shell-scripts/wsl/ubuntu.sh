@@ -39,4 +39,10 @@ echo 'fi' >>~/.bashrc
 ####         OH MY ZSH        ####
 ##################################
 # https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/
-# p10k configure
+sudo apt-get install git wget zsh -y
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+chsh -s $(grep /zsh$ /etc/shells | tail -1)
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions

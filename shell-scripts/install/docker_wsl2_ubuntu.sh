@@ -41,10 +41,12 @@ sudo apt install docker-compose -y
 
 # add grounp and service startup
 sudo usermod -aG docker $USER
+newgrp docker
 
 # check install
 printf "\n \n \n"
 docker -v
-#docker-compose --version
-printf "Please update the terminal for group changes to take effect \"newgrp docker\" \n"
+printf "\n"
+docker-compose --version
+printf "\n"
 exit
