@@ -49,4 +49,3 @@ docker -v
 printf "\n"
 docker-compose --version
 printf "\n"
-exit

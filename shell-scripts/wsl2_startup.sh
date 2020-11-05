@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# sudo curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl2_startup.sh > /tmp/wsl2_startup.sh
-# sudo chmod 755 /tmp/wsl2_startup.sh
-# sudo /tmp/wsl2_startup.sh
+# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl2_startup.sh > /tmp/wsl2_startup.sh
+# chmod 755 /tmp/wsl2_startup.sh
+# /tmp/wsl2_startup.sh
 
 ##################################
 ####        GET OS            ####

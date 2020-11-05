@@ -4,14 +4,14 @@ echo "Welcome to ZSH Setup script of Avery of ave.zone. This script is XKCD 1654
 cd ~
 
 (which sudo &>/dev/null && echo "sudo found") || (echo "sudo not found, exiting" && exit 1) #Checks if sudo is installed
-(which pkg &>/dev/null && sudo pkg install -y zsh git wget) || echo "pkg not found, moving on" # Checks for FreeBSD-like OSes
-(which pacman &>/dev/null && sudo pacman -Sy zsh git wget --noconfirm  --needed) || echo "pacman not found, moving on" # Checks for Arch-like OSes
-(which apt-get &>/dev/null && (sudo apt-get update;sudo apt-get install zsh git wget -y)) || echo "apt-get not found, moving on" # Checks for Ubuntu-like or Debian-like OSes
-(which yum &>/dev/null && (sudo yum upgrade;sudo yum install zsh git wget --assumeyes)) || echo "yum not found, moving on" # Checks for RedHat-like OSes
-(which zyyper &>/dev/null && (sudo zyyper upgrade;sudo zyyper install zsh git wget -y)) || echo "zyyper not found, moving on" # Checks for SUSE-like OSes
+(which pkg &>/dev/null && sudo pkg install -y zsh git wget fzf) || echo "pkg not found, moving on" # Checks for FreeBSD-like OSes
+(which pacman &>/dev/null && sudo pacman -Sy zsh git wget fzf --noconfirm  --needed) || echo "pacman not found, moving on" # Checks for Arch-like OSes
+(which apt-get &>/dev/null && (sudo apt-get update;sudo apt-get install zsh git wget fzf -y)) || echo "apt-get not found, moving on" # Checks for Ubuntu-like or Debian-like OSes
+(which yum &>/dev/null && (sudo yum upgrade;sudo yum install zsh git wget fzf --assumeyes)) || echo "yum not found, moving on" # Checks for RedHat-like OSes
+(which zyyper &>/dev/null && (sudo zyyper upgrade;sudo zyyper install zsh git wget fzf -y)) || echo "zyyper not found, moving on" # Checks for SUSE-like OSes
 
 if [[ "$OSTYPE" == "darwin"* ]]; then # Checks if OS is MacOS
-        (which brew &>/dev/null && (echo "brew found";brew install zsh wget git)) || echo "brew not found, exiting. See https://brew.sh for instructions on how to install"; exit 1 # If OS is macOS, checks if brew is instaleld. If not, it exits and warns user, if it is, it then installs the stuff from brew.
+        (which brew &>/dev/null && (echo "brew found";brew install zsh wget git fzf)) || echo "brew not found, exiting. See https://brew.sh for instructions on how to install"; exit 1 # If OS is macOS, checks if brew is instaleld. If not, it exits and warns user, if it is, it then installs the stuff from brew.
 fi
 
 # Powerline time!
@@ -52,7 +52,7 @@ ZSH_THEME=\"powerlevel10k/powerlevel10k\"
 DEFAULT_USER=\"$USERNAME\"
 UPDATE_ZSH_DAYS=10
 COMPLETION_WAITING_DOTS=\"true\"
-plugins=(git common-aliases git-extras screen sudo history zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git common-aliases git-extras screen sudo history zsh-completions zsh-syntax-highlighting zsh-autosuggestions docker docker-compose colorize command-not-found zsh-interactive-cd)
 autoload -U compinit && compinit
 source \$ZSH/oh-my-zsh.sh
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
