@@ -27,7 +27,7 @@ chmod 755 /tmp/docker_wsl2_ubuntu.sh
 ####    FIX DOCKER STARTUP    ####
 ##################################
 echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.bashrc
-echo 'service docker start' >>~/.bashrc
+echo '  sudo service docker start' >>~/.bashrc
 echo 'fi' >>~/.bashrc
 
 ##################################
@@ -63,16 +63,9 @@ RPROMPT=\"%D{%f/%m/%y} %T\"
 """ >~/.zshrc
 
 echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.zshrc
-echo 'service docker start' >>~/.zshrc
+echo '  sudo service docker start' >>~/.zshrc
 echo 'fi' >>~/.zshrc
 
-##################################
-####           ALIAS          ####
-##################################
-mkdir ${COMPOSER_HOME:-$HOME/.composer}
-echo "
-alias composer=\"docker run --rm --interactive \
-    --volume \$PWD/:/app \
-    --volume \${COMPOSER_HOME:-\$HOME/.composer}:/tmp \
-    --user \$(id -u):\$(id -g) \
-    composer\"" >>~/.zshrc
+echo 'alias dockerup="docker-compose up -d --force-recreate --build --remove-orphans"' >>~/.zshrc
+echo 'alias dockerdown="docker-compose down "' >>~/.zshrc
+echo 'alias dockerex="docker-compose exec -it "' >>~/.zshrc
