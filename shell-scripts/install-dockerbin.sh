@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/install-dockerbin.sh > /tmp/install-dockerbin.sh && chmod 755 /tmp/install-dockerbin.sh && /tmp/install-dockerbin.sh
 
 sudo rm -rf /tmp/library
 git clone https://github.com/medeirosinacio/library.git /tmp/library
