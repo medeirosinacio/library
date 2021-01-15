@@ -3,6 +3,8 @@
 sudo rm -rf /tmp/library
 git clone https://github.com/medeirosinacio/library.git /tmp/library
 
+dos2unix /tmp/library/docker-bin-container/*
+
 chmod +x /tmp/library/docker-bin-container/*
 chmod 777 /tmp/library/docker-bin-container/*
 
