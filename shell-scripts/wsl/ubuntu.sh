@@ -10,7 +10,7 @@ sudo apt upgrade -y
 ##################################
 ####       INSTALL UTIL       ####
 ##################################
-sudo apt install net-tools nmap tree -y
+sudo apt install net-tools nmap tree dos2unix -y
 
 # Install docker and docker-compose
 rm -rf /tmp/docker_wsl2_ubuntu.sh
