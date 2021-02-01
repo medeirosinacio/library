@@ -26,6 +26,7 @@ chmod 755 /tmp/docker_wsl2_ubuntu.sh
 ##################################
 ####    FIX DOCKER STARTUP    ####
 ##################################
+sudo $USER ALL=NOPASSWD:/usr/sbin/service docker start
 echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.bashrc
 echo '  sudo service docker start' >>~/.bashrc
 echo 'fi' >>~/.bashrc
