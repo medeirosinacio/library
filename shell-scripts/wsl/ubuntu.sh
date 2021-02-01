@@ -63,9 +63,10 @@ RPROMPT=\"%D{%f/%m/%y} %T\"
 """ >~/.zshrc
 
 echo 'if [[ $(service docker status) != *"Docker is running"* ]]; then' >>~/.zshrc
-echo '  sudo service docker start' >>~/.zshrc
+echo '  sudo service docker start >> /dev/null' >>~/.zshrc
 echo 'fi' >>~/.zshrc
 
 echo 'alias dockerup="docker-compose up -d --force-recreate --build --remove-orphans"' >>~/.zshrc
 echo 'alias dockerdown="docker-compose down "' >>~/.zshrc
 echo 'alias dockerex="docker-compose exec -it "' >>~/.zshrc
+echo 'alias dockerstop="docker ps -q | xargs -r docker stop"' >>~/.zshrc
