@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run -t --rm -v  /mnt:/mnt -v /home:/home -w $PWD --user $(id -u):$(id -g) vcarreira/artisan "$@"

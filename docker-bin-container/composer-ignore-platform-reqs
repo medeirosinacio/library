@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run -t --rm --interactive -v  /mnt:/mnt -v /home:/home -v ${COMPOSER_HOME:-$HOME/.composer}:/tmp -w $PWD --user $(id -u):$(id -g) composer "$@" --ignore-platform-reqs

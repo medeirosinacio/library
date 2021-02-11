@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo docker run -it --rm -v  /mnt:/mnt -v /home:/home rtzmx/tinker "$@"

@@ -4,7 +4,11 @@
 for ((i = 1; i <= $#; i++)); do
 
   if [[ ${!i} = "--help" ]]; then
-    helpmsg="--local                : use local repository to load scripts"
+    helpmsg="
+          --local                : Use local repository to load scripts
+          --wsl                  : Configure compatible WSL 2
+          --user                 : Get custom conf [--user gitUserName]
+    "
 
   elif [[ ${!i} = "--local" ]]; then
     localfiles=${!i}
@@ -35,6 +39,7 @@ if [[ -z $localfiles ]]; then
   sudo rm -rf /tmp/library
   git clone https://github.com/medeirosinacio/library /tmp/library
   cd /tmp/library/shell-scripts
+  localfiles="--local"
 fi
 
 # Validade repository

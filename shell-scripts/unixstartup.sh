@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl2_startup.sh > /tmp/wsl2_startup.sh && chmod 755 /tmp/wsl2_startup.sh && /tmp/wsl2_startup.sh
+# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/unixstartup.sh > /tmp/unixstartup.sh && chmod 755 /tmp/unixstartup.sh && /tmp/unixstartup.sh
+
+curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/functions/init_unixstartup.sh >/tmp/init_unixstartup.sh && chmod 755 /tmp/init_unixstartup.sh
+INIT="/tmp/init_unixstartup.sh"
+source "$INIT"
 
 ##################################
 ####        GET OS            ####
@@ -23,15 +27,16 @@ unset UNAME
 ####        CHECK OS          ####
 ##################################
 
-### UBUNTU
 if [ "$DISTRO" == "Ubuntu" ]; then
-  sudo rm -rf /tmp/ubuntu.sh
-  curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/wsl/ubuntu.sh >/tmp/ubuntu.sh
-  sudo chmod 755 /tmp/ubuntu.sh
-  /tmp/ubuntu.sh
-  zsh
+
+  sudo chmod 755 -R ./
+
+  ./distros-init/ubuntu.sh $parameters
+
+  #  zsh
+
   exit
 fi
 
-printf "ERRO: OS not supported. \n"
+printf "ERRO: OS not supported."
 exit 1

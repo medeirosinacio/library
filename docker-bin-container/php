@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run -t --rm --interactive --volume  /mnt:/mnt --volume /home:/home -w $PWD --user $(id -u):$(id -g) php:8-cli php "$@"
