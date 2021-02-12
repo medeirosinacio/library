@@ -9,7 +9,7 @@ sudo apt-get install git wget zsh fzf -y
 
 # folder .oh-my-shell not exist, install ZSH
 ZSH=$ZSH
-if [ -f "$ZSH" ]; then
+if [ ! -f "$ZSH" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   chsh -s $(grep /zsh$ /etc/shells | tail -1)
 fi
