@@ -34,14 +34,17 @@ fi
 
 # Validade local files
 if [[ -z $localfiles ]]; then
-  git --version 2>&1 >/dev/null
-  GIT_IS_AVAILABLE=$?
-  if [ $GIT_IS_AVAILABLE -eq 0 ]; then sudo apt install git -y; fi
+
+  if [ $(dpkg-query -W -f='${Status}' git 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+    sudo apt install git -y
+  fi
+
   sudo rm -rf /tmp/library
   git clone https://github.com/medeirosinacio/library /tmp/library
   cd /tmp/library/shell-scripts
   sudo chmod 755 -R ./
   localfiles="--local"
+
 fi
 
 # Validade repository
