@@ -27,9 +27,14 @@ for ((i = 1; i <= $#; i++)); do
   fi
 
 done
+
 if [[ ! -z $helpmsg ]]; then
   echo $helpmsg
   exit 1
+fi
+
+if [ ! -z "$WSL_DISTRO_NAME" ]; then
+  wsl="--wsl"
 fi
 
 # Validade local files
