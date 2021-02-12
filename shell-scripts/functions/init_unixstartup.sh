@@ -32,8 +32,6 @@ if [[ ! -z $helpmsg ]]; then
   exit 1
 fi
 
-parameters="${localfiles} ${wsl} $(if [[ ! -z $user ]]; then echo "--user " $user; fi)"
-
 # Validade local files
 if [[ -z $localfiles ]]; then
   sudo rm -rf /tmp/library
@@ -47,3 +45,5 @@ if [[ "medeirosinacio/library" != $(git config --get remote.origin.url | sed 's/
   echo "No scripts found!!! Please check repository location or try: --local"
   exit 1
 fi
+
+parameters="${localfiles} ${wsl} $(if [[ ! -z $user ]]; then echo "--user " $user; fi)"
