@@ -8,7 +8,7 @@ source "$INIT"
 sudo apt update -y
 sudo apt upgrade -y
 
-sudo apt install net-tools nmap tree dos2unix -y
+sudo apt install git net-tools nmap tree dos2unix -y
 
 # fiz unix encode
 dos2unix ./*/* >/dev/null 2>&1

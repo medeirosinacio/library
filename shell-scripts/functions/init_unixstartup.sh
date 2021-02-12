@@ -7,7 +7,7 @@ for ((i = 1; i <= $#; i++)); do
     helpmsg="
           --local                : Use local repository to load scripts
           --wsl                  : Configure compatible WSL 2
-          --user                 : Get custom conf [--user gitUserName]
+          --user                 : Get custom conf [--user gitUserName] find in [github.com/gitUserName/libary/conf/unixstartup/{files}]
     "
 
   elif [[ ${!i} = "--local" ]]; then
@@ -34,9 +34,13 @@ fi
 
 # Validade local files
 if [[ -z $localfiles ]]; then
+  git --version 2>&1 >/dev/null
+  GIT_IS_AVAILABLE=$?
+  if [ $GIT_IS_AVAILABLE -eq 0 ]; then sudo apt install git -y; fi
   sudo rm -rf /tmp/library
   git clone https://github.com/medeirosinacio/library /tmp/library
   cd /tmp/library/shell-scripts
+  sudo chmod 755 -R ./
   localfiles="--local"
 fi
 

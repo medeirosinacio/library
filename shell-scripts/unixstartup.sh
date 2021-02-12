@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/unixstartup.sh > /tmp/unixstartup.sh && chmod 755 /tmp/unixstartup.sh && /tmp/unixstartup.sh --wsl
+# curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/unixstartup.sh > /tmp/unixstartup.sh && chmod 755 /tmp/unixstartup.sh && /tmp/unixstartup.sh
 
 curl -fsSL https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/functions/init_unixstartup.sh >/tmp/init_unixstartup.sh && chmod 755 /tmp/init_unixstartup.sh
 INIT="/tmp/init_unixstartup.sh"
@@ -28,13 +28,9 @@ unset UNAME
 ##################################
 
 if [ "$DISTRO" == "Ubuntu" ]; then
-
-  sudo chmod 755 -R ./
-
   ./distros-init/ubuntu.sh $parameters
-
-  #  zsh
-
+  zsh
+  clear
   exit
 fi
 
