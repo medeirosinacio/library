@@ -48,16 +48,21 @@ if [[ ! -z $wsl ]]; then
 fi
 sudo chmod 755 /etc/init.d/startup.sh
 
-#/etc/sudoers
-#PARAMS_SUDO=(
-#  "$USER ALL=NOPASSWD:/usr/sbin/service docker start"
-#  "$USER ALL=NOPASSWD:/usr/sbin/service docker status"
-#)
-#FILE_SUDO=/etc/sudoers
-#sudo chmod 777 "$FILE_SUDO"
-#for param in "${PARAMS_SUDO[@]}"; do
-#  if ! cat "$FILE_SUDO" | grep -xqFe "$param"; then
-#    sudo echo "$param" >>"$FILE_SUDO"
+PARAMS_SUDO=(
+  "$USER ALL=NOPASSWD:/usr/sbin/service docker start"
+  "$USER ALL=NOPASSWD:/usr/sbin/service docker status"
+  "$USER ALL=NOPASSWD:/usr/sbin/service docker stop"
+)
+FILE_SUDO=/etc/sudoers
+for param in "${PARAMS_SUDO[@]}"; do
+  if ! sudo cat "$FILE_SUDO" | grep -xqFe "$param"; then
+    echo "$param" | sudo EDITOR='tee -a' visudo
+  fi
+done
+
+#if [[ ! -z $user ]]; then
+#  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases")
+#  if [[ RESPONSE == 200 ]]; then
+#    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases" >~/.bashrc_aliases
 #  fi
-#done
-#sudo chmod 110 "$FILE_SUDO"
+#fi
