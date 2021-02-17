@@ -64,8 +64,11 @@ done
 if [[ ! -z $user ]]; then
   RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bash_aliases")
   if [[ "$RESPONSE" == 200 ]]; then
+    rm -rf ~/.bash_aliases
     curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bash_aliases" >~/.bash_aliases
     dos2unix ~/.bash_aliases >/dev/null 2>&1
+    sudo chown $USER:$USER ~/.bash_aliases
+    chmod 644 ~/.bash_aliases
   fi
 fi
 
