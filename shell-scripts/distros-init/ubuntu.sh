@@ -62,10 +62,10 @@ for param in "${PARAMS_SUDO[@]}"; do
 done
 
 if [[ ! -z $user ]]; then
-  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases")
+  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bash_aliases")
   if [[ "$RESPONSE" == 200 ]]; then
-    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases" >~/.bashrc_aliases
-    dos2unix ~/.bashrc_aliases >/dev/null 2>&1
+    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bash_aliases" >~/.bash_aliases
+    dos2unix ~/.bash_aliases >/dev/null 2>&1
   fi
 fi
 

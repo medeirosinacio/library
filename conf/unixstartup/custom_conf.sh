@@ -8,8 +8,8 @@ PARAMS_ALIAS=(
   'alias sigadown="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerdown && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"'
 )
 for param in "${PARAMS_ALIAS[@]}"; do
-  if ! cat ~/.bashrc_aliases | grep -xqFe "$param"; then
-    sudo echo "$param" >>~/.bashrc_aliases
+  if ! cat ~/.bash_aliases | grep -xqFe "$param"; then
+    sudo echo "$param" >>~/.bash_aliases
   fi
 done
 
