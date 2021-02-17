@@ -30,7 +30,7 @@ fi
 
 PARAMS_INIT_SCRIPT=(
   '#!/usr/bin/env bash'
-  'if [[ $(sudo service docker status) != *"Docker is running"* ]]; then sudo service docker start; fi'
+  'if [[ $(sudo service docker status) != *"Docker is running"* ]]; then sudo service docker start >/dev/null 2>&1; fi'
 )
 
 sudo chmod 777 /etc/init.d/startup.sh
@@ -60,9 +60,20 @@ for param in "${PARAMS_SUDO[@]}"; do
   fi
 done
 
-#if [[ ! -z $user ]]; then
-#  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases")
-#  if [[ RESPONSE == 200 ]]; then
-#    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases" >~/.bashrc_aliases
-#  fi
-#fi
+if [[ ! -z $user ]]; then
+  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases")
+  if [[ RESPONSE == 200 ]]; then
+    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases" >~/.bashrc_aliases
+    dos2unix ~/.bashrc_aliases >/dev/null 2>&1
+  fi
+fi
+
+if [[ ! -z $user ]]; then
+  RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/custom_conf.sh")
+  if [[ RESPONSE == 200 ]]; then
+    curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/custom_conf.sh" >/tmp/custom_conf.sh
+    dos2unix /tmp/custom_conf.sh >/dev/null 2>&1
+    chmod 755 /tmp/custom_conf.sh
+    /tmp/custom_conf.sh
+  fi
+fi

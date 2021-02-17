@@ -8,6 +8,8 @@ for ((i = 1; i <= $#; i++)); do
           --local                : Use local repository to load scripts
           --wsl                  : Configure compatible WSL 2
           --user                 : Get custom conf [--user gitUserName] find in [github.com/gitUserName/libary/conf/unixstartup/{files}]
+                                   - .bashrc_aliases > load aliases
+                                   - .custom_conf.sh > load custom script
     "
 
   elif [[ ${!i} = "--local" ]]; then
@@ -35,6 +37,10 @@ fi
 
 if [ ! -z "$WSL_DISTRO_NAME" ]; then
   wsl="--wsl"
+fi
+
+if [ "$USER" = "medeirosinacio" ]; then
+  user="medeirosinacio"
 fi
 
 # Validade local files
