@@ -11,12 +11,8 @@ sudo apt-get install git wget zsh fzf -y
 if [ ! -d "~/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   chsh -s $(grep /zsh$ /etc/shells | tail -1)
-fi
-
-# file config ~/.zshrc not exist, create
-FILE=~/.zshrc
-if [ ! -f "$FILE" ]; then
-  touch "$FILE"
+  rm -rf ~/.zshrc
+  echo '' >~/.zshrc
 fi
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting >/dev/null 2>&1
@@ -39,7 +35,7 @@ PARAMS=(
 )
 
 for param in "${PARAMS[@]}"; do
-  if ! cat "$FILE" | grep -xqFe "$param"; then
-    echo "$param" >>"$FILE"
+  if ! cat ~/.zshrc | grep -xqFe "$param"; then
+    echo "$param" >>~/.zshrc
   fi
 done

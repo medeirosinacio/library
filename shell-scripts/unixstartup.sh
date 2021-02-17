@@ -29,8 +29,6 @@ unset UNAME
 
 if [ "$DISTRO" == "Ubuntu" ]; then
   ./distros-init/ubuntu.sh $parameters
-  zsh
-  clear
   exit
 fi
 

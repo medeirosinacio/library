@@ -31,6 +31,7 @@ fi
 PARAMS_INIT_SCRIPT=(
   '#!/usr/bin/env bash'
   'if [[ $(sudo service docker status) != *"Docker is running"* ]]; then sudo service docker start >/dev/null 2>&1; fi'
+  'if [[ -f /usr/share/welcome.sh ]]; then /usr/share/welcome.sh; fi'
 )
 
 sudo chmod 777 /etc/init.d/startup.sh
@@ -77,3 +78,5 @@ if [[ ! -z $user ]]; then
     /tmp/custom_conf.sh
   fi
 fi
+
+zsh
