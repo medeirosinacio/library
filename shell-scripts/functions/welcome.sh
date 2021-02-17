@@ -7,12 +7,15 @@ B='\u001b[34;1m'
 G='\u001b[30;1m'
 NC='\033[0m' # No Color
 
+bold=$(tput bold)
+normal=$(tput sgr0)
+
 IFS=';' read updates security_updates < <(/usr/lib/update-notifier/apt-check 2>&1)
 
 DISTRO=$(lsb_release -d | awk '{print $2, $3}')
 
 printf  "
-     ${Y}Welcome $USER to $WSL_DISTRO_NAME on Windows Subsystem for Linux (WSL2)${NC}
+     ${Y}Welcome ${bold}$USER${normal} to $WSL_DISTRO_NAME on Windows Subsystem for Linux (WSL2)${NC}
 
      System ${B}information${NC} as of $(date)
 

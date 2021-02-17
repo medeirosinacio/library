@@ -62,7 +62,7 @@ done
 
 if [[ ! -z $user ]]; then
   RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases")
-  if [[ RESPONSE == 200 ]]; then
+  if [[ "$RESPONSE" == 200 ]]; then
     curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/.bashrc_aliases" >~/.bashrc_aliases
     dos2unix ~/.bashrc_aliases >/dev/null 2>&1
   fi
@@ -70,7 +70,7 @@ fi
 
 if [[ ! -z $user ]]; then
   RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/custom_conf.sh")
-  if [[ RESPONSE == 200 ]]; then
+  if [[ "$RESPONSE" == 200 ]]; then
     curl -fsSL "https://raw.githubusercontent.com/$user/library/master/conf/unixstartup/custom_conf.sh" >/tmp/custom_conf.sh
     dos2unix /tmp/custom_conf.sh >/dev/null 2>&1
     chmod 755 /tmp/custom_conf.sh
