@@ -53,6 +53,7 @@ PARAMS_SUDO=(
   "$USER ALL=NOPASSWD:/usr/sbin/service docker start"
   "$USER ALL=NOPASSWD:/usr/sbin/service docker status"
   "$USER ALL=NOPASSWD:/usr/sbin/service docker stop"
+  "$USER ALL=NOPASSWD:/usr/bin/bash"
 )
 FILE_SUDO=/etc/sudoers
 for param in "${PARAMS_SUDO[@]}"; do

@@ -43,6 +43,8 @@ G='\u001b[30;1m'
 NC='\033[0m' # No Color
 TEXT_BOLD='\e[7;49;33m'
 
+sudo bash -c 'apt update >/dev/null 2>&1 & disown'
+
 IFS=';' read updates security_updates < <(/usr/lib/update-notifier/apt-check 2>&1)
 
 DISTRO=\$(lsb_release -d | awk '{print \$2, \$3}')
