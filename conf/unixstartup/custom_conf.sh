@@ -50,9 +50,10 @@ sudo bash -c 'apt update >/dev/null 2>&1 & disown'
 IFS=';' read updates security_updates < <(/usr/lib/update-notifier/apt-check 2>&1)
 
 DISTRO=\$(lsb_release -d | awk '{print \$2, \$3}')
+DISTRO_NAME=\$(lsb_release -d | awk '{print \$2}')
 
 printf "
-     \${Y}Welcome \${TEXT_BOLD}\$USER\${NC}\${Y} to \$WSL_DISTRO_NAME on Windows Subsystem for Linux (WSL2)\${NC}
+     \${Y}Welcome \${TEXT_BOLD}\$USER\${NC}\${Y} to \$DISTRO_NAME on Windows Subsystem for Linux (WSL2)\${NC}
 
      System \${B}information\${NC} as of \$(date)
 
