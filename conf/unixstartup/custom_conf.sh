@@ -3,7 +3,9 @@
 PARAMS_ALIAS=(
   'alias notepad="/mnt/d/Programas/Notepad++/notepad++.exe"'
   'alias phpstorm="phpstorm64.exe"'
+  'alias otc="phpstorm64.exe . >/dev/null 2>&1 & disown"'
   'alias explorer="explorer.exe"'
+  'alias cl="zsh"'
   'alias sigaup="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerup && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"'
   'alias sigadown="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerdown && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"'
 )
