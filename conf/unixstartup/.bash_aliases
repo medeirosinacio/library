@@ -1,3 +1,6 @@
+# sys
+alias update-all="sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y"
+
 # docker
 alias dockerup="docker-compose up -d --force-recreate --build --remove-orphans"
 alias dockerdown="docker-compose down "
@@ -18,9 +21,9 @@ alias php7.0='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $
 alias php7.3='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.3-cli php'
 alias php7.4='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.4-cli php'
 alias tinker='docker run -it --rm -v  /mnt:/mnt -v /home:/home -v $PWD:/var/www/html/pwd rtzmx/tinker'
-alias notepad="notepad++.exe"
 alias phpstorm="phpstorm64.exe"
 alias explorer="explorer.exe"
-alias sigaup="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerup && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"
-alias sigadown="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerdown && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"
+alias sigaup="cd /home/medeirosinacio/code/siga && dockerup && cd /home/medeirosinacio/code/siga/application/siga/public"
+alias sigadown="cd /home/medeirosinacio/code/siga && dockerdown && cd /home/medeirosinacio/code/siga/application/siga/public"
 alias cl="zsh"
+alias notepad="/mnt/c/Program Files/Notepad++/notepad++.exe"
