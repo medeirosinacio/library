@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-PARAMS_ALIAS=(
-  'alias notepad="/mnt/d/Programas/Notepad++/notepad++.exe"'
-  'alias phpstorm="phpstorm64.exe"'
-  'alias otc="phpstorm64.exe . >/dev/null 2>&1 & disown"'
-  'alias explorer="explorer.exe"'
-  'alias cl="zsh"'
-  'alias sigaup="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerup && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"'
-  'alias sigadown="cd /home/medeirosinacio/code/SIGA/siga-docker && dockerdown && cd /home/medeirosinacio/code/SIGA/siga-docker/application/siga/public"'
-  "alias kraken=\"export DISPLAY=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}'):0.0 && export GDK_SCALE=1 && gitkraken & \""
-)
-for param in "${PARAMS_ALIAS[@]}"; do
-  if ! cat ~/.bash_aliases | grep -xqFe "$param"; then
-    sudo echo "$param" >>~/.bash_aliases
-  fi
-done
-
 mkdir ~/code >>/dev/null 2>&1
 
 # WELCOME
@@ -74,13 +58,3 @@ sudo chmod 555 /usr/share/welcome.sh
 /usr/share/welcome.sh
 # ./WELCOME
 
-# GitKraken
-cd /tmp
-wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
-sudo dpkg -i ./gitkraken-amd64.deb
-sudo apt-get install -f
-sudo apt install chromium-browser fonts-noto-color-emoji fonts-noto
-
-#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0 &&
-#export GDK_SCALE=1
-#gitkraken &
