@@ -27,7 +27,7 @@ sudo usermod -aG docker $USER
 # If WSL set docker API :4444
 if [[ ! -z $wsl ]]; then
   FILE=/etc/default/docker
-  DOCKER_API="DOCKER_OPTS='-H tcp://0.0.0.0:4444 -H unix:///var/run/docker.sock'"
+  DOCKER_API="DOCKER_OPTS='-H tcp://0.0.0.0:4445 -H unix:///var/run/docker.sock'"
   if [ -f "$FILE" ]; then
     sudo chmod 777 /etc/default/docker
     if ! cat "$FILE" | grep -xqFe "$DOCKER_API"; then
