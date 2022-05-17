@@ -3,6 +3,7 @@ alias dockerup="docker-compose up -d --force-recreate --build --remove-orphans"
 alias dockerdown="docker-compose down "
 alias dockerex="docker exec -it "
 alias dockerstop="docker ps -q | xargs -r docker stop"
+alias update-all="sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y"
 
 # docker bin
 alias artisan='docker run -ti --rm -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD -p 8000:8000 --user $(id -u):$(id -g) vcarreira/artisan'
@@ -25,6 +26,8 @@ alias sigadown="cd /home/medeirosinacio/code/siga && dockerdown && cd /home/mede
 alias cl="zsh"
 alias notepad="/mnt/c/Program Files/Notepad++/notepad++.exe"
 
-alias nivyup="cd /home/medeirosinacio/code/alfa-gerenciador-nyvi/bin/ && ./build-and-up.sh && cd .."
+alias ny="docker exec -it --user $(id -u):$(id -g) nivy-phpfpm"
+alias bumaup="cd /home/medeirosinacio/code/fipo-bot-php-generic/bin/ && ./build-and-up.sh && cd .."
+
+alias ny="docker exec -it --user $(id -u):$(id -g) nivy-phpfpm"
 alias ponto="docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:8-cli php /home/medeirosinacio/code/ponto-bot/bin/exec.php"
-alias ny="docker exec -it nivy-phpfpm"
