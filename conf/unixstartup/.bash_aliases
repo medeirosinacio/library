@@ -9,7 +9,7 @@ alias update-all="sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upg
 alias gitcf="git checkout -f"
 alias gitc="git checkout"
 alias gitfp="git fetch && git pull"
-alias gitcf="git checkout -b"
+alias gitcb="git checkout -b"
 
 # docker bin
 alias artisan='docker run -ti --rm -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD -p 8000:8000 --user $(id -u):$(id -g) vcarreira/artisan'
