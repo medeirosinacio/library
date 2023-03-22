@@ -1,9 +1,12 @@
+alias update-all="sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y"
+alias create-exe-git-bashscript="/usr/share/create-exe-git-bashscript.sh"
+
 # docker
 alias dockerup="docker-compose up -d --force-recreate --build --remove-orphans"
 alias dockerdown="docker-compose down "
 alias dockerex="docker exec -it "
 alias dockerstop="docker ps -q | xargs -r docker stop"
-alias update-all="sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y"
+alias amaterasu="echo \"docker stop \\\$(docker ps -aq) && docker rm \\\$(docker ps -aq)\""
 
 # git
 alias gitcf="git checkout -f"
@@ -25,15 +28,6 @@ alias php7.0='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $
 alias php7.3='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.3-cli php'
 alias php7.4='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.4-cli php'
 alias tinker='docker run -it --rm -v  /mnt:/mnt -v /home:/home -v $PWD:/var/www/html/pwd rtzmx/tinker'
-alias phpstorm="phpstorm64.exe"
-alias explorer="explorer.exe"
-alias sigaup="cd /home/medeirosinacio/code/siga && dockerup && cd /home/medeirosinacio/code/siga/application/siga/public"
-alias sigadown="cd /home/medeirosinacio/code/siga && dockerdown && cd /home/medeirosinacio/code/siga/application/siga/public"
-alias cl="zsh"
-alias notepad="/mnt/c/Program Files/Notepad++/notepad++.exe"
 
-alias ny="docker exec -it --user $(id -u):$(id -g) nivy-phpfpm"
-alias bumaup="cd /home/medeirosinacio/code/fipo-bot-php-generic/bin/ && ./build-and-up.sh && cd .."
-
-alias ny="docker exec -it --user $(id -u):$(id -g) nivy-phpfpm"
-alias ponto="docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:8-cli php /home/medeirosinacio/code/ponto-bot/bin/exec.php"
+alias bumaup="cd ~/code/fipo-bot-php-generic/bin/ && ./build-and-up.sh && cd .."
+alias nivyup="cd ~/code/fipo-gerenciador-nivy/bin/ && ./build-and-up.sh && cd .."
