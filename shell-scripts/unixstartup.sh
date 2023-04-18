@@ -27,15 +27,6 @@ unset UNAME
 ####        CHECK OS          ####
 ##################################
 
-if [ "$DISTRO" == "Ubuntu" ]; then
-  ./distros-init/ubuntu.sh $parameters
-  exit
-fi
 
-if [ "$DISTRO" == "debian" ]; then
-  ./distros-init/ubuntu.sh $parameters
-  exit
-fi
-
-printf "ERRO: OS not supported. $DISTRO"
-exit 1
+./distros-init/ubuntu.sh $parameters
+exit
