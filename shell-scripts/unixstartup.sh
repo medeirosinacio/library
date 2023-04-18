@@ -32,7 +32,7 @@ if [ "$DISTRO" == "Ubuntu" ]; then
   exit
 fi
 
-if [ "$DISTRO" == "Debian" ]; then
+if [ "$DISTRO" == "debian" ]; then
   ./distros-init/ubuntu.sh $parameters
   exit
 fi
