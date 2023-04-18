@@ -32,5 +32,10 @@ if [ "$DISTRO" == "Ubuntu" ]; then
   exit
 fi
 
-printf "ERRO: OS not supported."
+if [ "$DISTRO" == "Debian" ]; then
+  ./distros-init/ubuntu.sh $parameters
+  exit
+fi
+
+printf "ERRO: OS not supported. $DISTRO"
 exit 1
