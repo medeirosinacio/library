@@ -10,9 +10,6 @@ cat > /etc/wsl.conf <<EOF
 command="[[ -f /etc/init.d/startup.sh ]] && sudo /etc/init.d/startup.sh"
 command="echo \$(iso8601) $USER 2 wsl up >> /var/log/wsl.log"
 
-[interop]
-enabled = false
-appendWindowsPath = false
 EOF
 
     sudo chmod 744 /etc/wsl.conf
