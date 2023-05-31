@@ -13,15 +13,13 @@ alias composer='docker run -ti --rm -v  /mnt:/mnt -v /home/$USER:/home/$USER -v 
 alias composer7.0='docker run -ti --rm --dns 8.8.8.8  -v  /mnt:/mnt -v /home/$USER:/home/$USER -v ${COMPOSER_HOME:-$HOME/.composer}:${COMPOSER_HOME:-$HOME/.composer} -w $PWD --user $(id -u):$(id -g) prooph/composer:7.0'
 alias gulp='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) vcarreira/node gulp '
 alias npm='docker run -ti --rm --user $(id -u):$(id -g)  -v "$PWD":/usr/src/app -w /usr/src/app node:alpine npm'
-alias php='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) -p 80:80 -p 8000:8000 --dns 8.8.8.8 php:latest php'
-alias php5.4='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:5.4-cli php'
-alias php5.6='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:5.6-cli php'
-alias php7.0='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.0-cli php'
-alias php7.3='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.3-cli php'
-alias php7.4='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) php:7.4-cli php'
+alias php-sandbox='docker run --rm -it -v ./:/app -u dump --add-host host.docker.internal:"$WSL_NAMESERVER" -w /app --user $(id -u):$(id -g) dumptec/php-fpm:dev-8.2-0.1.8'
 alias tinker='docker run -it --rm -v  /mnt:/mnt -v /home:/home -v $PWD:/var/www/html/pwd rtzmx/tinker'
 
-# wsl exe
+# wsl
+alias wsl-host-ip="cmd.exe /c \"ipconfig | findstr IPv\""
+alias wsl-nameserver='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
+
 alias storm="/mnt/c/Program\ Files/JetBrains/PhpStorm\ 2023.1/bin/phpstorm64.exe"
 alias explorer="/mnt/c/Windows/explorer.exe"
 alias cmd="/mnt/c/Windows/System32/cmd.exe"

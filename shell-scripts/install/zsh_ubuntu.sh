@@ -22,6 +22,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/p
 PARAMS=(
   'export LANG="en_US.UTF-8"'
   "export ZSH=\"/home/$USER/.oh-my-zsh\""
+  'export WSL_NAMESERVER=$(cat /etc/resolv.conf | grep nameserver | awk "{print $2}" | sed "s/ //g")'
   'ZSH_THEME="robbyrussell"'
   'COMPLETION_WAITING_DOTS="true"'
   'plugins=(git common-aliases git-extras screen sudo history zsh-completions zsh-syntax-highlighting zsh-autosuggestions docker docker-compose colorize command-not-found zsh-interactive-cd)'
