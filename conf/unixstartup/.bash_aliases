@@ -14,7 +14,9 @@ alias composer7.0='docker run -ti --rm --dns 8.8.8.8  -v  /mnt:/mnt -v /home/$US
 alias gulp='docker run -ti --rm  -v  /mnt:/mnt -v /home/$USER:/home/$USER -w $PWD --user $(id -u):$(id -g) vcarreira/node gulp '
 alias npm='docker run -ti --rm --user $(id -u):$(id -g)  -v "$PWD":/usr/src/app -w /usr/src/app node:alpine npm'
 alias php-sandbox='docker run --rm -it -v ./:/app -u dump --add-host host.docker.internal:"$WSL_NAMESERVER" -w /app --user $(id -u):$(id -g) dumptec/php-fpm:dev-8.2-0.1.8'
-alias tinker='docker run -it --rm -v  /mnt:/mnt -v /home:/home -v $PWD:/var/www/html/pwd rtzmx/tinker'
+alias tinker='docker run --rm -it -v ./:/app -w /app ilsenem/psysh'
+alias tinker-php8='docker run --rm -it -v ./:/app -w /app ilsenem/psysh:0.11.8-php8'
+alias tinker-php7='docker run --rm -it -v ./:/app -w /app ilsenem/psysh:0.11.8-php7'
 
 # wsl
 alias wsl-host-ip="cmd.exe /c \"ipconfig | findstr IPv\""
