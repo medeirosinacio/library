@@ -31,9 +31,22 @@ alias notepad="/mnt/c/Program\ Files/Notepad++/notepad++.exe >/dev/null 2>&1"
 alias gitcf="git checkout -f"
 alias gitc="git checkout"
 alias gitfp="git fetch --all && git pull"
+alias gitclone="git clone"
 alias gitcb="git checkout -b"
 
 #tools
 alias create-exe-git-bashscript='if [ ! -f "/usr/share/create-exe-git-bashscript.sh" ]; then wget -q -O /usr/share/create-exe-git-bashscript.sh https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/create-exe-git-bashscript.sh; fi; bash /usr/share/create-exe-git-bashscript.sh;'
 
 # external
+
+
+# commands
+git() {
+    if [ "$1" = "clone" ]; then
+        link="$2"
+        directory=$(basename "$link" .git)
+        /usr/bin/git clone "$link" && cd "$directory"
+    else
+        /usr/bin/git "$@"
+    fi
+}
