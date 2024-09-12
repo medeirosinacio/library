@@ -36,6 +36,7 @@ alias gitcb="git checkout -b"
 
 #tools
 alias create-exe-git-bashscript='if [ ! -f "/usr/share/create-exe-git-bashscript.sh" ]; then wget -q -O /usr/share/create-exe-git-bashscript.sh https://raw.githubusercontent.com/medeirosinacio/library/master/shell-scripts/create-exe-git-bashscript.sh; fi; bash /usr/share/create-exe-git-bashscript.sh;'
+alias create-empty-commit='git commit --allow-empty -m "ci: trigger pipeline"'
 
 # external
 
