@@ -51,3 +51,14 @@ git() {
         /usr/bin/git "$@"
     fi
 }
+
+to_timestamp_ms() {
+  local input="$*"
+  if command -v gdate >/dev/null 2>&1; then
+    gdate -d "$input" "+%s%3N"
+  elif date --version >/dev/null 2>&1; then
+    date -d "$input" "+%s%3N"
+  else
+    date -j -f "%d/%m/%Y %H:%M:%S" "$input" "+%s000"
+  fi
+}
